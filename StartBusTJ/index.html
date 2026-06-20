@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Маршруты — RouteFinder</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="main-header">
+        <div class="container header-flex">
+            <a href="index.html" class="logo">Start<span>BusTJ</span></a>
+            <nav class="nav-menu">
+                <a href="index.html" class="nav-link active">Маршруты</a>
+                <a href="about.html" class="nav-link">О нас</a>
+                <a href="contacts.html" class="nav-link">Контакты</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero container">
+            <h1>Все маршруты</h1>
+            <p>Быстрый поиск по номеру или остановке</p>
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Например: 101 или Центр..." autocomplete="off">
+                <span class="search-icon">🔍</span>
+            </div>
+        </section>
+
+        <section class="container">
+            <div id="routeGrid" class="route-grid"></div>
+            <div id="emptyState" class="empty-state hidden">
+                <h3>Ничего не нашли...</h3>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container footer-bottom">
+            <p>© 2026 RouteFinder. Все права защищены.</p>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>

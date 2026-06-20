@@ -1,0 +1,264 @@
+:root {
+    --primary: #0066FF;
+    --dark: #1A1A1A;
+    --bg: #F8FAFC;
+    --white: #ffffff;
+    --grey: #64748B;
+    --radius: 20px;
+    --glass: rgba(255, 255, 255, 0.8);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg);
+    color: var(--dark);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; 
+}
+
+main { flex: 1; }
+
+.container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+/* HEADER */
+.main-header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: var(--glass);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    padding: 20px 0;
+}
+
+.header-flex { display: flex; align-items: center; justify-content: space-between; }
+.logo { font-size: 1.5rem; font-weight: 800; text-decoration: none; color: var(--dark); }
+.logo span { color: var(--primary); }
+
+.nav-menu { display: flex; gap: 40px; }
+.nav-link { text-decoration: none; color: var(--dark); font-weight: 500; transition: 0.3s; }
+.nav-link.active { color: var(--primary); font-weight: 700; }
+.nav-link:hover { color: var(--primary); }
+
+/* HERO SECTION */
+.hero { padding: 60px 0 40px; text-align: center; }
+.hero h1 { font-size: 3rem; font-weight: 800; margin-bottom: 10px; }
+.hero p { color: var(--grey); margin-bottom: 30px; }
+
+/* SEARCH BOX */
+.search-container { position: relative; max-width: 600px; margin: 0 auto; }
+#searchInput {
+    width: 100%; padding: 22px 30px 22px 65px;
+    border-radius: 50px; border: 1px solid rgba(0,0,0,0.05);
+    font-size: 1.1rem; box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    outline: none;
+}
+#searchInput:focus { border-color: var(--primary); }
+.search-icon { position: absolute; left: 25px; top: 50%; transform: translateY(-50%); opacity: 0.4; }
+
+/* GRID & CARDS */
+.route-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 25px;
+    padding: 20px 0;
+}
+
+.card {
+    background: var(--white);
+    border-radius: 24px;
+    padding: 30px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.03);
+    border: 1px solid #edf2f7;
+    display: flex;
+    flex-direction: column;
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0,102,255,0.1);
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.bus-number { font-size: 3.5rem; font-weight: 800; color: var(--dark); line-height: 1; }
+
+.route-badge {
+    background: #e6fffa;
+    color: #38a169;
+    padding: 5px 12px;
+    border-radius: 10px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.route-desc { color: var(--grey); font-size: 1rem; margin-bottom: 20px; }
+.route-desc b { display: block; color: var(--dark); margin-top: 5px; font-size: 1.1rem; }
+
+/* TIMELINE (Остановки) */
+.stops-container {
+    position: relative;
+    margin: 10px 0 20px;
+    padding-left: 20px;
+}
+
+.timeline-line {
+    position: absolute;
+    left: 7px;
+    top: 10px;
+    bottom: 10px;
+    width: 2px;
+    background: #e2e8f0;
+}
+
+.stop-node {
+    margin-bottom: 15px;
+    cursor: pointer;
+    background: transparent;
+    border-radius: 10px;
+    transition: 0.2s;
+    padding: 5px;
+}
+.stop-node:hover { background: #f8fafc; }
+
+.stop-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+    color: var(--dark);
+}
+.stop-icon { z-index: 1; background: var(--white); font-size: 1.2rem; margin-left: -19px; }
+
+/* ДЕТАЛИ ОСТАНОВКИ (ИСПРАВЛЕНО) */
+.stop-details {
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.3s ease-out;
+    font-size: 0.85rem;
+    color: var(--grey);
+    padding-left: 25px;
+    opacity: 0;
+}
+
+/* Класс active добавляется через JS при клике на остановку */
+.stop-node.active .stop-details {
+    max-height: 100px;
+    margin-top: 8px;
+    opacity: 1;
+}
+
+.stop-details p { margin-bottom: 4px; }
+.stop-details b { color: var(--primary); }
+
+/* КНОПКА */
+.details-btn {
+    width: 100%;
+    background: #f1f5f9;
+    border: none;
+    padding: 12px;
+    border-radius: 15px;
+    color: var(--primary);
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: auto;
+    transition: 0.2s;
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+}
+
+.details-btn:hover { background: #e2e8f0; }
+.active-btn { background: var(--primary); color: white; }
+.active-btn:hover { background: #0056d6; }
+
+/* UTILS & FOOTER */
+.hidden { display: none !important; }
+.main-footer { background: var(--dark); color: white; padding: 40px 0; margin-top: 80px; }
+.footer-bottom { text-align: center; color: var(--grey); }
+.empty-state { text-align: center; padding: 40px 0; color: var(--grey); font-size: 1.2rem; }
+
+/* Анимация контейнера маршрута */
+.stops-container:not(.hidden) { animation: slideDown 0.3s ease-out; }
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+/* ОБНОВЛЕННЫЕ ДЕТАЛИ ОСТАНОВКИ */
+.stop-details {
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.3s ease-out;
+    padding-left: 25px;
+    opacity: 0;
+}
+
+.stop-node.active .stop-details {
+    max-height: 250px; /* Высота раскрытого блока */
+    margin-top: 10px;
+    opacity: 1;
+}
+
+/* СПИСОК РЕЙСОВ СО СКРОЛЛОМ */
+.schedule-list {
+    max-height: 230px;
+    overflow-y: auto;
+    padding-right: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px; /* Расстояние между рейсами */
+}
+
+/* Кастомизация скроллбара (чтобы было как в приложении) */
+.schedule-list::-webkit-scrollbar { width: 4px; }
+.schedule-list::-webkit-scrollbar-track { background: #f1f5f9; border-radius: 10px; }
+.schedule-list::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+
+/* КАРТОЧКА ОДНОГО РЕЙСА */
+.schedule-item {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 10px 12px;
+    display: flex;
+    flex-direction: column;
+}
+
+.schedule-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 4px;
+}
+
+.sch-time {
+    font-weight: 800;
+    font-size: 1.1rem;
+    color: var(--primary);
+}
+
+.sch-bus {
+    font-size: 0.75rem;
+    background: #e2e8f0;
+    padding: 3px 8px;
+    border-radius: 8px;
+    color: var(--dark);
+    font-weight: 700;
+}
+
+.sch-dir {
+    font-size: 0.85rem;
+    color: var(--grey);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
